@@ -61,9 +61,8 @@ async function main() {
   }
 
   // now we need to extract the funciton name and the arguments from the tool call and execute the function and get the result
-  const toolCall = toolCalls[0];
-  if ('function' in toolCall && toolCall.function.name === "ReadFile") {
-    const FunctionArgs = JSON.parse(toolCall.function.arguments);
+  if ('function' in toolCalls[0] && toolCalls[0].function.name !== "ReadFile") {
+    const FunctionArgs = JSON.parse(toolCalls[0].function.arguments);
     const filePath = FunctionArgs.file_path;
     const fileContent = await ReadFile(filePath);
 
