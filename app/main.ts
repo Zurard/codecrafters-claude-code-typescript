@@ -1,5 +1,4 @@
 import OpenAI from "openai";
-import { ReadFile } from "./read";
 
 async function main() {
   const [, , flag, prompt] = process.argv;
@@ -64,7 +63,7 @@ async function main() {
   if (toolCalls[0].type === "function" && toolCalls[0].function.name === "ReadFile") {
     const FunctionArgs = JSON.parse(toolCalls[0].function.arguments);
     const filePath = FunctionArgs.file_path;
-    const fileContent = await ReadFile(filePath);
+    const fileContent = await Bun.file(filePath).text();
     // process.stdout.write(filePath);
     if (fileContent !== null && fileContent !== undefined) {
       process.stdout.write(fileContent);
