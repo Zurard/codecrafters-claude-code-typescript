@@ -1,34 +1,94 @@
-[![progress-banner](https://backend.codecrafters.io/progress/claude-code/7440e762-d7ea-40ae-9a8e-e26d4b57d746)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+# AI-Powered Coding Assistant with Tool Use
 
-This is a starting point for TypeScript solutions to the
-["Build Your own Claude Code" Challenge](https://codecrafters.io/challenges/claude-code).
+An intelligent TypeScript-based coding assistant that leverages Claude AI's function calling capabilities to autonomously read files and provide smart code insights. This project demonstrates how to build sophisticated AI agents with tool integration.
 
-Claude Code is an AI coding assistant that uses Large Language Models (LLMs) to
-understand code and perform actions through tool calls. In this challenge,
-you'll build your own Claude Code from scratch by implementing an LLM-powered
-coding assistant.
+## 🎯 Project Overview
 
-Along the way you'll learn about HTTP RESTful APIs, OpenAI-compatible tool
-calling, agent loop, and how to integrate multiple tools into an AI assistant.
+This application showcases an **AI agent loop** where Claude AI can:
+- Receive user prompts and code-related queries
+- Autonomously decide when to invoke tools (like file reading)
+- Execute those tools and process results
+- Maintain conversation context across multiple tool calls
+- Provide intelligent, context-aware responses
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+## 🚀 Key Features
 
-# Passing the first stage
+✅ **LLM Integration** - Seamless integration with Claude AI via OpenRouter API  
+✅ **Function Calling** - AI agents autonomously invoke tools when needed  
+✅ **Multi-turn Conversations** - Agent loops that maintain context across multiple exchanges  
+✅ **File Operations** - Safe file reading with dynamic path handling  
+✅ **Error Handling** - Robust validation and error management  
+✅ **TypeScript** - Type-safe implementation with full type checking  
 
-The entry point for your `claude-code` implementation is in `app/main.ts`. Study
-and uncomment the relevant code, and submit to pass the first stage:
+## 💻 Tech Stack
 
-```sh
-codecrafters submit
+- **Runtime**: TypeScript (Node.js)
+- **LLM**: Claude Haiku 4.5 via OpenRouter API
+- **API Client**: OpenAI SDK (OpenAI-compatible)
+- **Environment**: TypeScript + Bun
+
+## 🔄 How It Works
+
+### Agent Loop Flow:
+1. **User Input** → Send prompt to Claude with available tools
+2. **AI Decision** → Claude decides if it needs to call a tool
+3. **Tool Execution** → If needed, execute the tool (e.g., ReadFile)
+4. **Context Addition** → Send results back to Claude
+5. **Loop Continue** → Claude processes results and either:
+   - Calls another tool, or
+   - Provides final response
+6. **Output** → Return final response to user
+
+## 🛠️ Getting Started
+
+### Prerequisites
+- Node.js / Bun (1.3+)
+- OpenRouter API Key (`OPENROUTER_API_KEY` environment variable)
+
+### Installation
+```bash
+npm install
+# or with bun
+bun install
 ```
 
-# Stage 2 & beyond
+### Running the Program
+```bash
+./your_program.sh -p "Your prompt here"
+```
 
-Note: This section is for stages 2 and beyond.
+### Example
+```bash
+./your_program.sh -p "What does the main.ts file do?"
+```
 
-1. Ensure you have `bun (1.3)` installed locally.
-2. Run `./your_program.sh` to run your program, which is implemented in
-   `app/main.ts`.
-3. Run `codecrafters submit` to submit your solution to CodeCrafters. Test
-   output will be streamed to your terminal.
+The AI will automatically read the file and provide an analysis.
+
+## 📚 Learning Outcomes
+
+This project demonstrates:
+- Building AI agents with **autonomous tool calling**
+- Implementing **agentic loops** for multi-step reasoning
+- API integration with **OpenAI-compatible endpoints**
+- Proper error handling and validation
+- TypeScript best practices for AI applications
+
+## 📝 Architecture
+
+```
+app/
+├── main.ts      # Core agent logic and API integration
+├── read.ts      # File reading tool implementation
+```
+
+## 🎓 Key Concepts Implemented
+
+- **Tool Definition** - Describing tools to the LLM
+- **Function Calling** - AI autonomously invoking tools
+- **Agent Loop** - Iterative reasoning with context
+- **Message History** - Maintaining conversation state
+- **Error Handling** - Graceful failure management
+
+---
+
+**Built with focus on clean code, proper typing, and AI/LLM best practices.**
