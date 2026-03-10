@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { ReadFile } from "./read";
+import fs from "fs";
 
 async function main() {
   const [, , flag, prompt] = process.argv;
@@ -73,7 +73,7 @@ messages.push({
       for (const toolCall of message.tool_calls) {
         const functionName = toolCall.function.name;
         const args = JSON.parse(toolCall.function.arguments);
-        if (functionName === "Read") {
+        if (functionName === "ReadFile") {
           const fileContent = fs.readFileSync(args.file_path, "utf-8");
           messages.push({
             role: "tool",
@@ -122,6 +122,6 @@ messages.push({
 
   // TODO: Uncomment the lines below to pass the first stage
   // console.log(response.choices[0].message.content);
-}
+
 
 main();
